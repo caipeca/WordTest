@@ -1,0 +1,25 @@
+<h2>Lista de Empregados</h2>
+<table class="table table-hover">
+    <thead>
+        <tr class="table-dark">
+            <th>Nome</th>
+            <th>Sobre Nome</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let utilizador of utilizadors">
+            <td>{{utilizador.nome}}</td>
+            <td>{{utilizador.sobreNome}}</td>
+            <td>{{utilizador.email}}</td>
+            <td>
+                <button (click)="atualizarUtilizador(utilizador.id)" class="btn btn-info"> Atualizar</button>
+                <button (click)="apagarUtilizador(utilizador.id)" class="btn btn-danger" style="margin-left: 5px;">
+                    Apagar</button>
+            </td>
+        </tr>
+    </tbody>
+
+</table>
