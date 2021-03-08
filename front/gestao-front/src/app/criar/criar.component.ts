@@ -20,7 +20,7 @@ export class CriarComponent implements OnInit {
   salvarUtilizador(){
     this.utilizadorService.criarUtilizador(this.utilizador).subscribe(data=>{
       console.log(data);
-      this.goToUtilizadorLista();
+      
     },
     error=> console.log(error));
   }
@@ -29,9 +29,17 @@ export class CriarComponent implements OnInit {
     this.router.navigate(['/utilizadores']);
   }
 
-  onSubmit(){
+  onSubmit(f){
     console.log(this.utilizador);
+
     this.salvarUtilizador();
+  }
+  onVoltar(){
+    this.goToUtilizadorLista();
+  }
+
+  verificar(campo){
+    return !campo.valid && campo.touched;
   }
 
 }
