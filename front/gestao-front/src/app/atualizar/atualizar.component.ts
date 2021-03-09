@@ -23,7 +23,8 @@ export class AtualizarComponent implements OnInit {
     }, error=>console.log(error));
   }
 
-  onSubmit(){
+  onSubmit(f){
+
     this.utilizadorSerice.atualizarUtilizador(this.id, this.utilizador).subscribe(
       data=>{
         this.goToUtilizadorLista();
@@ -32,5 +33,8 @@ export class AtualizarComponent implements OnInit {
 
   goToUtilizadorLista(){
     this.router.navigate(['/utilizadores']);
+  }
+  verificar(campo){
+    return !campo.valid && campo.touched;
   }
 }

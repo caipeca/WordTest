@@ -10,6 +10,7 @@ import { UtilizadorService } from '../service/utilizador.service';
 })
 export class CriarComponent implements OnInit {
 
+  
   utilizador: Utilizador = new Utilizador();
   constructor(private utilizadorService: UtilizadorService,
               private router: Router) { }
@@ -31,8 +32,8 @@ export class CriarComponent implements OnInit {
 
   onSubmit(f){
     console.log(this.utilizador);
-
     this.salvarUtilizador();
+    f.form.reset();
   }
   onVoltar(){
     this.goToUtilizadorLista();

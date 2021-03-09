@@ -26,9 +26,11 @@
                 #email='ngModel'>
         </div>
         <div *ngIf="verificar(email)" class="alert alert-danger" role="alert">
-            Insira um email válido
+            Insira um mail válido
         </div>
-
+        <div *ngIf="">
+            Salvo
+        </div>
         <button class="btn btn-success" type="submit" style="margin-top: 5px;" [disabled]="!f.valid">Salvar</button>
         <button class="btn btn-success" (click)="onVoltar()" style="margin-top: 5px; margin-left: 5px;">Ver</button>
 

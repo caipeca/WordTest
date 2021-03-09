@@ -1,23 +1,37 @@
 <div class="col-md-6 offset-md-3">
     <h3>Atualizar</h3>
-    <form (ngSubmit)="onSubmit()">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
 
         <div class="form-group">
             <label>Nome</label>
-            <input type="text" class="form-control" id="nome" [(ngModel)]="utilizador.nome" name="nome">
+            <input type="text" class="form-control" id="nome" [(ngModel)]="utilizador.nome" name="nome" required
+                #nome='ngModel'>
+        </div>
+        <div *ngIf="verificar(nome)" class="alert alert-danger" role="alert">
+            Insira o nome
         </div>
 
         <div class="form-group">
             <label>Sobrenome</label>
-            <input type="text" class="form-control" id="sobreNome" [(ngModel)]="utilizador.sobreNome" name="sobreNome">
+            <input type="text" class="form-control" id="sobreNome" [(ngModel)]="utilizador.sobreNome" name="sobreNome"
+                required #sobrenome='ngModel'>
+        </div>
+        <div *ngIf="verificar(sobrenome)" class="alert alert-danger" role="alert">
+            Insira o Sobrenome
         </div>
 
         <div class="form-group">
             <label>Email</label>
-            <input type="email" class="form-control" id="email" [(ngModel)]="utilizador.email" name="email">
+            <input type="email" class="form-control" id="email" [(ngModel)]="utilizador.email" name="email" required
+                #email='ngModel'>
         </div>
-
-        <button class="btn btn-success" type="submit" style="margin-top: 5px;">Salvar</button>
+        <div *ngIf="verificar(email)" class="alert alert-danger" role="alert">
+            Insira um mail válido
+        </div>
+        <div *ngIf="">
+            Salvo
+        </div>
+        <button class="btn btn-success" type="submit" style="margin-top: 5px;" [disabled]="!f.valid">Salvar</button>
 
     </form>
 </div>
