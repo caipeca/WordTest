@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Utilizador } from '../class/utilizador';
 import { UtilizadorService } from '../service/utilizador.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-criar',
@@ -13,7 +14,7 @@ export class CriarComponent implements OnInit {
   
   utilizador: Utilizador = new Utilizador();
   constructor(private utilizadorService: UtilizadorService,
-              private router: Router) { }
+              private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -33,6 +34,7 @@ export class CriarComponent implements OnInit {
   onSubmit(f){
     console.log(this.utilizador);
     this.salvarUtilizador();
+    this.notificar();
     f.form.reset();
   }
   onVoltar(){
@@ -41,6 +43,10 @@ export class CriarComponent implements OnInit {
 
   verificar(campo){
     return !campo.valid && campo.touched;
+  }
+
+  notificar(){
+    this.toastr.success('Salvo com sucesso', 'Salvo');
   }
 
 }

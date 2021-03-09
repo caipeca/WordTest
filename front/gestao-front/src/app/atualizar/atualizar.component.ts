@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Utilizador } from '../class/utilizador';
 import { UtilizadorService } from '../service/utilizador.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-atualizar',
@@ -14,7 +15,7 @@ export class AtualizarComponent implements OnInit {
   utilizador: Utilizador = new Utilizador();
   constructor(private utilizadorSerice: UtilizadorService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -29,6 +30,7 @@ export class AtualizarComponent implements OnInit {
       data=>{
         this.goToUtilizadorLista();
       }, error => console.log(error));
+      this.notificar();
   }
 
   goToUtilizadorLista(){
@@ -36,5 +38,8 @@ export class AtualizarComponent implements OnInit {
   }
   verificar(campo){
     return !campo.valid && campo.touched;
+  }
+  notificar(){
+    this.toastr.success('Salvo com sucesso', 'Editado');
   }
 }
